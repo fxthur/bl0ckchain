@@ -8,23 +8,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (with submodules)
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: Install Foundry
-        run: |
-          curl -L https://foundry.paradigm.xyz | bash
-          source ~/.bashrc
-          foundryup
-          forge --version
+      - name: Setup Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
 
       - name: Run tests (with gas report)
         run: |
-          forge test --gas-report > gas-report.txt || true
-          # biar workflow tetep fail kalau test merah:
-          forge test -vvv
+          forge --version
+          forge test --gas-report | tee gas-report.txt
 
       - name: Upload gas report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gas-report
