@@ -3,18 +3,20 @@ No files changed, compilation skipped
 Ran 4 tests for test/Counter.t.sol:CounterTest
 [PASS] testDecrementRevertsOnZero() (gas: 31579)
 [PASS] testIncrement() (gas: 53412)
-[PASS] testIncrementByFuzz(uint256) (runs: 256, μ: 62389, ~: 62688)
-[PASS] testSetFuzz(uint256) (runs: 256, μ: 85558, ~: 85521)
-Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 28.70ms (47.87ms CPU time)
+[PASS] testIncrementByFuzz(uint256) (runs: 256, μ: 62530, ~: 62688)
+[PASS] testSetFuzz(uint256) (runs: 256, μ: 85565, ~: 85497)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 34.82ms (54.58ms CPU time)
 
-Ran 6 tests for test/ERC20Mini.t.sol:ERC20MiniTest
-[PASS] testApproveAndTransferFromHappy() (gas: 135512)
-[PASS] testInitialSupply() (gas: 18951)
-[PASS] testTotalSupplyInvariantSimple(uint256) (runs: 256, μ: 90521, ~: 91487)
-[PASS] testTransferFromRevertsOnInsufficientAllowance() (gas: 40951)
-[PASS] testTransferHappy() (gas: 74987)
-[PASS] testTransferRevertsOnZeroAddress() (gas: 30928)
-Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 51.76ms (51.75ms CPU time)
+Ran 8 tests for test/ERC20Mini.t.sol:ERC20MiniTest
+[PASS] testApproveAndTransferFromHappy() (gas: 135534)
+[PASS] testBurnHappy() (gas: 65336)
+[PASS] testBurnRevertsOnInsufficientBalance() (gas: 35189)
+[PASS] testInitialSupply() (gas: 18952)
+[PASS] testTotalSupplyInvariantSimple(uint256) (runs: 256, μ: 90983, ~: 91509)
+[PASS] testTransferFromRevertsOnInsufficientAllowance() (gas: 40973)
+[PASS] testTransferHappy() (gas: 75009)
+[PASS] testTransferRevertsOnZeroAddress() (gas: 30861)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 44.27ms (44.38ms CPU time)
 
 ╭----------------------------------+-----------------+-------+--------+-------+---------╮
 | src/Counter.sol:Counter Contract |                 |       |        |       |         |
@@ -31,9 +33,9 @@ Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 51.76ms (51.75ms CP
 |----------------------------------+-----------------+-------+--------+-------+---------|
 | increment                        | 45048           | 45048 | 45048  | 45048 | 1       |
 |----------------------------------+-----------------+-------+--------+-------+---------|
-| incrementBy                      | 25446           | 45095 | 45394  | 45730 | 256     |
+| incrementBy                      | 25446           | 45236 | 45394  | 45730 | 256     |
 |----------------------------------+-----------------+-------+--------+-------+---------|
-| set                              | 25407           | 35447 | 25791  | 45691 | 512     |
+| set                              | 25407           | 35451 | 25791  | 45691 | 512     |
 |----------------------------------+-----------------+-------+--------+-------+---------|
 | value                            | 2446            | 2446  | 2446   | 2446  | 1025    |
 ╰----------------------------------+-----------------+-------+--------+-------+---------╯
@@ -43,7 +45,7 @@ Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 51.76ms (51.75ms CP
 +===========================================================================================+
 | Deployment Cost                      | Deployment Size |       |        |       |         |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
-| 919476                               | 5394            |       |        |       |         |
+| 1010210                              | 5815            |       |        |       |         |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
 |                                      |                 |       |        |       |         |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
@@ -53,16 +55,18 @@ Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 51.76ms (51.75ms CP
 |--------------------------------------+-----------------+-------+--------+-------+---------|
 | approve                              | 46434           | 46434 | 46434  | 46434 | 1       |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
-| balanceOf                            | 2851            | 2851  | 2851   | 2851  | 772     |
+| balanceOf                            | 2851            | 2851  | 2851   | 2851  | 774     |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
-| decimals                             | 2466            | 2466  | 2466   | 2466  | 1       |
+| burn                                 | 23853           | 29014 | 29014  | 34175 | 2       |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
-| totalSupply                          | 2470            | 2470  | 2470   | 2470  | 513     |
+| decimals                             | 2555            | 2555  | 2555   | 2555  | 1       |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
-| transfer                             | 22084           | 50724 | 51798  | 51882 | 258     |
+| totalSupply                          | 2470            | 2470  | 2470   | 2470  | 515     |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| transfer                             | 22084           | 51161 | 51798  | 51882 | 258     |
 |--------------------------------------+-----------------+-------+--------+-------+---------|
 | transferFrom                         | 27227           | 40104 | 40104  | 52981 | 2       |
 ╰--------------------------------------+-----------------+-------+--------+-------+---------╯
 
 
-Ran 2 test suites in 77.69ms (80.46ms CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
+Ran 2 test suites in 87.62ms (79.09ms CPU time): 12 tests passed, 0 failed, 0 skipped (12 total tests)

@@ -66,4 +66,16 @@ contract ERC20Mini {
         emit Transfer(from, to, amount);
         return true;
     }
+
+    function burn(uint256 amount) external returns (bool) {
+        if (balances[msg.sender] < amount) revert InsufficientBalance();
+        // Update state
+        unchecked {
+            balances[msg.sender] -= amount;   
+            totalSupply         -= amount;   
+            }
+            // Jejak burn: Transfer ke address(0)
+            emit Transfer(msg.sender, address(0), amount);
+            return true;
+            }
 }

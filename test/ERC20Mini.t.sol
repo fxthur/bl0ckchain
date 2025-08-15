@@ -74,4 +74,26 @@ contract ERC20MiniTest is Test {
         assertEq(token.totalSupply(), beforeTotal);
         assertEq(token.balanceOf(address(this)) + token.balanceOf(alice), beforeTotal);
     }
+
+    function testBurnHappy() public {
+        uint256 beforeBal   = token.balanceOf(address(this));
+        uint256 beforeTotal = token.totalSupply();
+        uint256 amt = 5e18; // bebas, kecil dulu
+
+        // Expect event: Transfer(sender → 0x0, amt)
+        vm.expectEmit(true, true, false, true);
+        emit Transfer(address(this), address(0), amt);
+
+        bool ok = token.burn(amt);
+        assertTrue(ok);
+
+        assertEq(token.balanceOf(address(this)), beforeBal - amt);
+        assertEq(token.totalSupply(),            beforeTotal - amt);
+    }
+
+    function testBurnRevertsOnInsufficientBalance() public {
+        vm.prank(alice); // pakai yang di level kontrak
+        vm.expectRevert(InsufficientBalance.selector);
+        token.burn(1);
+    }
 }
